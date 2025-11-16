@@ -1,0 +1,61 @@
+# As specified in the paper (PyTorch 2.1.0 for CUDA 11.8)
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+
+# --- Stage 1: Perception Module (LLaVA) ---
+# For loading and fine-tuning the Large Language and Vision Model
+transformers==4.36.2
+# For efficient training and memory optimization
+accelerate==0.25.0
+bitsandbytes==0.41.3
+# For Parameter-Efficient Fine-Tuning (LoRA)
+peft==0.7.1
+# Image processing library
+Pillow==10.1.0
+# Often a dependency for vision models
+einops==0.7.0
+# Dependencies for model tokenizers
+sentencepiece==0.1.99
+protobuf==3.20.3
+
+# --- Stage 2: Knowledge Representation Module (TransEx) ---
+# As specified in the paper (DGL 1.1.0) for graph-based models
+# Make sure to install the version compatible with your CUDA installation
+# Example for CUDA 11.8: pip install dgl==1.1.0+cu118 -f https://data.dgl.ai/wheels/cu118/repo.html
+dgl==1.1.0
+
+# --- Stage 3: Reasoning Module (DRL) ---
+# As specified in the paper (Tianshou 0.5.1) for Deep Reinforcement Learning
+tianshou==0.5.1
+# As specified in the paper (Gym 0.29.1) for creating RL environments
+gym==0.29.1
+# gym[accept-rom-license] is sometimes needed for specific environments
+
+# --- General Utility and Data Handling ---
+# For numerical operations
+numpy==1.26.2
+# For scientific computing and utilities
+scipy==1.11.4
+# For data manipulation and analysis
+pandas==2.1.4
+# For parsing YAML configuration files
+PyYAML==6.0.1
+# For creating progress bars
+tqdm==4.66.1
+# For various ML metrics and utilities
+scikit-learn==1.3.2
+
+# --- Visualization ---
+# For plotting training curves and results
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# --- (Optional) Web Prototype ---
+# For running the web-based demonstration system
+fastapi==0.104.1
+uvicorn[standard]==0.24.0.post1
+# For handling file uploads in the web app
+python-multipart==0.0.6
+# For HTML templating
+Jinja2==3.1.2
