@@ -1,0 +1,8 @@
+花键轴	hasHeatTreatment	调质处理
+精车	usesEquipment	卧式车床
+热处理	isFollowedBy	精车
+活塞	hasFeature	活塞环槽
+铣外花键	isProcessStepFor	花键轴
+90°外圆车刀	isUsedFor	粗车
+齿轮轴	hasProcess	热处理
+磨削	requiresMachine	外圆磨床

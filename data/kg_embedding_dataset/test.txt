@@ -1,0 +1,7 @@
+花键轴	hasFinalProcess	检验
+粗车	isFollowedBy	热处理
+调质处理	achievesHardness	220~250HBW
+铣削	canBePerformedBy	立式加工中心
+支撑板	hasProcess	攻丝
+精车	precedes	铣外花键
+铝合金_ZL109	isMaterialOf	活塞

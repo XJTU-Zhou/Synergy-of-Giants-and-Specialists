@@ -1,0 +1,55 @@
+{
+    "case_01": {
+      "sequence": [
+        "material_cutting",
+        "rough_turning",
+        "heat_treatment",
+        "finish_turning",
+        "spline_milling",
+        "center_hole_grinding",
+        "external_grinding",
+        "inspection"
+      ],
+      "parameters": {
+        "rough_turning": {
+          "tool_type": ["cemented_carbide_tool"],
+          "spindle_speed_rpm": [400, 800],
+          "feed_rate_mm_rev": [0.3, 0.5],
+          "cutting_depth_mm": [1.5, 3.0]
+        },
+        "finish_turning": {
+          "tool_type": ["cemented_carbide_tool"],
+          "spindle_speed_rpm": [800, 1200],
+          "feed_rate_mm_rev": [0.1, 0.2],
+          "cutting_depth_mm": [0.2, 0.5]
+        },
+        "spline_milling": {
+          "tool_type": ["end_mill"],
+          "spindle_speed_rpm": [600, 1000],
+          "feed_rate_mm_min": [100, 200]
+        },
+        "external_grinding": {
+          "tool_type": ["grinding_wheel"],
+          "wheel_speed_m_s": [25, 35],
+          "workpiece_speed_rpm": [100, 200],
+          "feed_rate_mm_rev": [0.005, 0.02]
+        }
+      }
+    },
+    "case_02": {
+      "sequence": [
+        "material_cutting",
+        "turning",
+        "chamfering",
+        "inspection"
+      ],
+      "parameters": {
+        "turning": {
+          "tool_type": ["high_speed_steel_tool", "cemented_carbide_tool"],
+          "spindle_speed_rpm": [500, 900],
+          "feed_rate_mm_rev": [0.2, 0.4],
+          "cutting_depth_mm": [1.0, 2.5]
+        }
+      }
+    }
+  }
