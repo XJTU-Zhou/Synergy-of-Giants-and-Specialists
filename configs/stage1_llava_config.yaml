@@ -1,0 +1,67 @@
+# -- Model Arguments --
+model_args:
+  # Pre-trained model identifier from Hugging Face Hub.
+  model_name_or_path: "liuhaotian/llava-v1.5-7b"
+  # Set to True to use 4-bit quantization for memory saving.
+  use_4bit: True
+  # Compute data type for the base model.
+  bnb_4bit_compute_dtype: "float16"
+  # Quantization type. "nf4" is recommended.
+  bnb_4bit_quant_type: "nf4"
+
+# -- LoRA (Low-Rank Adaptation) Arguments --
+# These parameters are crucial for efficient fine-tuning.
+lora_args:
+  # Enable LoRA fine-tuning.
+  enable: True
+  # The rank of the update matrices (r). From Table 5.
+  lora_r: 16
+  # The alpha parameter for LoRA scaling (α). From Table 5 (α=2r).
+  lora_alpha: 32
+  # Dropout probability for LoRA layers.
+  lora_dropout: 0.05
+  # Target modules in the model to apply LoRA to (e.g., query, key, value layers).
+  target_modules: "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj"
+
+# -- Data Arguments --
+data_args:
+  # Path to the training data file.
+  data_path: "./data/vlm_finetuning_dataset/annotations.jsonl"
+  # Path to the folder containing all images.
+  image_folder: "./data/vlm_finetuning_dataset/"
+  # Use chat templates for formatting conversations.
+  is_multimodal: True
+
+# -- Training Arguments --
+# Corresponds to Hugging Face Trainer arguments.
+training_args:
+  # Directory to save the final model and checkpoints.
+  output_dir: "./trained_models/stage1_llava_finetuned"
+  # Number of training epochs. From Table 5.
+  num_train_epochs: 10
+  # Batch size per GPU. From Table 5.
+  per_device_train_batch_size: 32
+  # Number of steps for gradient accumulation to simulate a larger batch size.
+  gradient_accumulation_steps: 1
+  # The optimizer to use. From Table 5.
+  optim: "adamw_torch"
+  # Strategy for saving model checkpoints ('steps', 'epoch').
+  save_strategy: "epoch"
+  # Strategy for evaluating the model ('steps', 'epoch').
+  evaluation_strategy: "epoch"
+  # Initial learning rate. From Table 5.
+  learning_rate: 0.0005 # 5e-4
+  # Weight decay for regularization. From Table 5.
+  weight_decay: 0.01
+  # Use 16-bit floating point precision for training to save memory and speed up.
+  fp16: True
+  # Ratio of training steps for the linear warmup.
+  warmup_ratio: 0.03
+  # Learning rate scheduler type. From Table 5.
+  lr_scheduler_type: "cosine"
+  # Frequency of logging training metrics.
+  logging_steps: 10
+  # Overwrite the output directory if it exists.
+  overwrite_output_dir: True
+  # Remove unused columns from the dataset to prevent trainer errors.
+  remove_unused_columns: False

@@ -1,0 +1,39 @@
+# -- Dataset Arguments --
+dataset_args:
+  # Directory containing train.txt, valid.txt, and test.txt.
+  dataset_dir: "./data/kg_embedding_dataset/"
+  # Set to True if your KG relations are reciprocal (e.g., friend_of). False for manufacturing KGs.
+  is_reciprocal: False
+
+# -- Model Arguments --
+# Hyperparameters for the TransEx model architecture.
+model_args:
+  # The dimension of the entity and relation embeddings. From the paper.
+  embedding_dim: 200
+  # Number of attention heads in the Transformer encoder. From the paper.
+  num_attention_heads: 2
+  # Dimension of the feed-forward layer in the Transformer. From the paper.
+  ff_dim: 512
+  # Number of layers in the Transformer encoder. From the paper.
+  num_encoder_layers: 4
+  # Dropout rate used throughout the model. From the paper.
+  dropout: 0.15
+
+# -- Training Arguments --
+training_args:
+  # Directory to save the final KG embeddings and model state.
+  output_dir: "./trained_models/stage2_transex_embeddings/"
+  # Number of training epochs. From the paper.
+  num_epochs: 300
+  # Batch size for training. From the paper.
+  batch_size: 128
+  # Initial learning rate. From the paper.
+  learning_rate: 0.005
+  # The optimizer to use. Adam is a common choice for KG models.
+  optimizer: "adam"
+  # Coefficient for the L2 regularization term (lambda).
+  regularization_lambda: 0.0001
+  # Frequency of logging training loss.
+  log_every_steps: 100
+  # Frequency of running validation.
+  validate_every_epochs: 10
