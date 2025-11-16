@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-==============================================================================
-Script for End-to-End Integrated Framework Evaluation
-==============================================================================
+
 
 This script orchestrates the entire three-stage pipeline to evaluate the
 end-to-end performance of the "Synergy of Giants and Specialists" framework.
@@ -11,15 +9,6 @@ It processes test cases from the `data/end_to_end_testset` directory,
 generates manufacturing process plans, and compares them against the ground
 truth to calculate Sequence Accuracy (SeqAcc) and Key Parameter
 Acceptability (KPA).
-
-This script aims to reproduce the results of Table 8 in the paper.
-
-Usage:
-    Run from the project root:
-    > python scripts/run_end_to_end_evaluation.py
-    
-    Optional arguments can be added to support ablation studies, for example:
-    > python scripts/run_end_to_end_evaluation.py --use_generic_vlm
 """
 
 import os
@@ -180,4 +169,5 @@ if __name__ == "__main__":
     parser.add_argument('--reasoning_variant', type=str, default='drl', choices=['drl', 'complex', 'beam_search', 'a_star'], help="Ablation: Choose a different reasoning module.")
     
     args = parser.parse_args()
+
     main(args)
